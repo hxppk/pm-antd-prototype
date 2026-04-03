@@ -165,6 +165,7 @@ PM 确认后开始生成代码。
 2. **Mock 数据** — `src/mock/<pageName>.ts`
    - 根据需求文档的字段清单生成合理的假数据
    - 导出为数组，页面组件直接 import 使用
+   - **注意 import 路径**：页面组件在 `src/pages/<PageName>/index.tsx`，import mock 数据时路径为 `../../mock/<pageName>`（两层上级），不是 `../mock/<pageName>`
 
 3. **路由注册** — 更新 `src/App.tsx`
    - 在 routes 数组中追加新页面的路由配置
