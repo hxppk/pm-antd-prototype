@@ -46,16 +46,25 @@ skill 目录下维护一个预装好依赖的 template/ 文件夹，新项目直
 **后续运行（已有 template/）：**
 
 1. 询问 PM 项目名称（或从需求关键词自动生成，如"用户管理"→ `user-management`）
-2. 在当前目录下复制模板：
+2. **必须用 Bash 工具执行以下命令，不可跳过：**
    ```bash
    cp -r ~/.claude/skills/pm-antd-prototype/template/ ./<项目名>
-   cd <项目名>
    ```
-3. 秒级完成，直接展示引导
+3. **必须用 Bash 工具切换到项目目录：**
+   ```bash
+   cd ./<项目名>
+   ```
+4. **必须用 Bash 工具验证文件夹结构已就绪：**
+   ```bash
+   ls -la src/ references/
+   ```
+   确认 `src/layouts/`、`src/pages/`、`src/mock/`、`references/screenshots/`、`references/prd/` 都存在后，才能继续。
+
+**⚠️ 严禁跳过上述 Bash 命令。必须先执行复制、切换目录、验证文件夹结构，确认成功后才能展示引导。**
 
 ### 初始化完成后展示引导
 
-初始化完成后，向 PM 展示以下使用指南，等待 PM 回复：
+上述命令全部执行成功后，向 PM 展示以下使用指南，等待 PM 回复：
 
 ~~~
 项目 <项目名> 已创建完成！
