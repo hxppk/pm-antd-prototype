@@ -10,18 +10,38 @@ description: >
 
 从产品需求到可运行的 antd React 原型。严格使用 Ant Design 组件库，禁止自定义样式。
 
-## 启动引导
+## 启动引导 + 项目初始化
 
-skill 启动后，**第一件事**自动创建参考材料文件夹：
+skill 启动后，**自动完成项目初始化，PM 无需任何手动操作**。
 
-```bash
-mkdir -p references/screenshots references/prd
-```
+### 自动初始化流程
 
-然后向 PM 展示以下使用指南，等待 PM 回复：
+检测当前目录状态，执行对应操作：
+
+**已有 package.json 的项目：**
+
+1. 检查 dependencies 是否包含 `antd`，没有则 `npm install antd`
+2. 创建参考材料目录：`mkdir -p references/screenshots references/prd`
+
+**全新项目（无 package.json）：**
+
+1. `npm create vite@latest . -- --template react-ts`
+2. `npm install antd react-router-dom`
+3. `mkdir -p references/screenshots references/prd`
+4. 清空 Vite 默认文件，写入脚手架模板（见 references/scaffold-templates.md）：
+   - 删除 `src/App.css`、`src/index.css`、`src/assets/`
+   - 写入 `src/layouts/BasicLayout.tsx`（antd Layout 骨架）
+   - 写入 `src/App.tsx`（路由 + antd ConfigProvider）
+   - 写入 `src/main.tsx`（入口）
+   - 创建 `src/pages/` 和 `src/mock/` 空目录
+5. `npm run dev` 验证能启动，确认无编译错误后停止 dev server
+
+### 初始化完成后展示引导
+
+初始化完成后，向 PM 展示以下使用指南，等待 PM 回复：
 
 ~~~
-欢迎使用 PM 原型生成工具！
+项目已初始化完成！
 
 我已为你创建了参考材料文件夹：
 
@@ -40,51 +60,7 @@ references/
 准备好了吗？请描述你想要的页面或功能。
 ~~~
 
-PM 回复后，进入阶段一。
-
-## 阶段一：项目初始化
-
-检测当前目录状态，执行对应操作：
-
-### 已有 package.json 的项目
-
-1. 检查 `package.json` 的 dependencies 是否包含 `antd`
-2. 如果没有：`npm install antd`
-3. 如果已有：检查版本是否 >= 6.0.0，低于则提示 PM 是否升级
-4. 确认 `references/` 目录结构存在，不存在则创建：
-   ```bash
-   mkdir -p references/screenshots references/prd
-   ```
-
-### 全新项目（无 package.json）
-
-按以下顺序执行：
-
-1. 初始化 Vite + React + TypeScript 项目：
-   ```bash
-   npm create vite@latest . -- --template react-ts
-   ```
-2. 安装依赖：
-   ```bash
-   npm install antd react-router-dom
-   ```
-3. 创建参考材料目录：
-   ```bash
-   mkdir -p references/screenshots references/prd
-   ```
-4. 清空 Vite 默认文件，写入脚手架模板（见 references/scaffold-templates.md）：
-   - 删除 `src/App.css`、`src/index.css`、`src/assets/`
-   - 写入 `src/layouts/BasicLayout.tsx`（antd Layout 骨架）
-   - 写入 `src/App.tsx`（路由 + antd ConfigProvider）
-   - 写入 `src/main.tsx`（入口）
-   - 创建 `src/pages/` 和 `src/mock/` 空目录
-5. 验证项目能启动：
-   ```bash
-   npm run dev
-   ```
-   确认无编译错误后停止 dev server。
-
-初始化完成后，进入阶段二。
+PM 回复后，进入阶段二。
 
 ## 阶段二：需求整理
 
