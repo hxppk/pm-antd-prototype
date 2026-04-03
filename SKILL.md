@@ -92,6 +92,29 @@ PM 回复后，进入阶段一。
 
 1. 检查 `references/screenshots/` 是否有图片文件，**有则必须逐一读取**（Claude Code 支持读取图片）
 2. 检查 `references/prd/` 是否有 `.md` 或 `.pdf` 文件，**有则必须逐一读取**
+   - `.md` 文件直接读取
+   - `.pdf` 文件使用 Read 工具读取（Claude Code 原生支持 PDF）
+   - **如果 PDF 读取失败**（常见于 Windows，报错 `pdftoppm` 或 `poppler` 缺失），向 PM 提示以下解决方案：
+     ```
+     PDF 读取失败，可能缺少 poppler 工具。请安装后重试：
+
+     Windows (推荐 scoop):
+       scoop install poppler
+
+     Windows (手动):
+       1. 从 https://github.com/oschwartz10612/poppler-windows/releases 下载
+       2. 解压后将 bin 目录添加到系统 PATH
+       3. 重启终端
+
+     macOS:
+       brew install poppler
+
+     Linux:
+       sudo apt install poppler-utils
+
+     安装后重新运行 /pm-prototype 即可。
+     或者，你也可以将 PDF 转为 .md 文件放到 references/prd/ 下。
+     ```
 3. 结合参考材料和 PM 的自然语言描述，理解需求全貌
 
 ### 从截图中提取导航结构
