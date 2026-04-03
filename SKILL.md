@@ -3,12 +3,12 @@ name: pm-antd-prototype
 description: >
   Use when PM wants to generate frontend prototypes from requirements using Ant Design components.
   Triggers: /pm-prototype, "生成原型", "antd 原型", "前端原型", "需求转界面", "用 antd 做页面".
-  Generates runnable React + antd v6 prototypes with mock data from natural language descriptions.
+  Generates runnable React + antd prototypes with mock data from natural language descriptions.
 ---
 
 # PM Antd 原型生成
 
-从产品需求到可运行的 antd v6 React 原型。严格使用 Ant Design 组件库，禁止自定义样式。
+从产品需求到可运行的 antd React 原型。严格使用 Ant Design 组件库，禁止自定义样式。
 
 ## 启动引导
 
