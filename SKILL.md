@@ -12,28 +12,30 @@ description: >
 
 ## 启动引导
 
-skill 启动后，**第一件事**向 PM 展示以下使用指南，然后等待 PM 回复：
+skill 启动后，**第一件事**自动创建参考材料文件夹：
+
+```bash
+mkdir -p references/screenshots references/prd
+```
+
+然后向 PM 展示以下使用指南，等待 PM 回复：
 
 ~~~
 欢迎使用 PM 原型生成工具！
 
-在开始之前，请准备好以下材料（如有）：
+我已为你创建了参考材料文件夹：
 
-项目结构：
-your-project/
-├── references/
-│   ├── screenshots/   ← 把老系统界面截图放这里（.png / .jpg）
-│   └── prd/           ← 把 PRD 参考文档放这里（.md / .pdf）
-├── src/               ← 代码会生成在这里
-└── ...
+references/
+├── screenshots/   ← 把老系统界面截图放这里（.png / .jpg）
+└── prd/           ← 把 PRD 参考文档放这里（.md / .pdf）
 
 如果是改造老系统模块：
-  请先把相关界面截图放到 references/screenshots/
+  请把相关界面截图放到 references/screenshots/
   把相关 PRD 文档放到 references/prd/
-  我会参考这些材料来理解现有设计
+  放好后告诉我，我会参考这些材料来理解现有设计
 
 如果是全新项目：
-  references/ 留空即可，直接描述你的需求
+  不需要放任何文件，直接描述你的需求即可
 
 准备好了吗？请描述你想要的页面或功能。
 ~~~
