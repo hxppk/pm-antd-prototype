@@ -6,6 +6,20 @@
 
 ## 安装
 
+**macOS / Linux：**
+
+```bash
+git clone https://github.com/hxppk/pm-antd-prototype.git ~/.claude/skills/pm-antd-prototype
+```
+
+**Windows（PowerShell）：**
+
+```powershell
+git clone https://github.com/hxppk/pm-antd-prototype.git "$env:USERPROFILE\.claude\skills\pm-antd-prototype"
+```
+
+**Windows（Git Bash）：**
+
 ```bash
 git clone https://github.com/hxppk/pm-antd-prototype.git ~/.claude/skills/pm-antd-prototype
 ```
