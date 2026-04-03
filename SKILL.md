@@ -10,38 +10,55 @@ description: >
 
 从产品需求到可运行的 antd React 原型。严格使用 Ant Design 组件库，禁止自定义样式。
 
+## 子命令
+
+- `/pm-prototype version` — 读取 skill 目录下的 `VERSION` 文件，显示版本号。如果 template/ 已存在，同时读取 `template/node_modules/antd/package.json` 显示 antd 版本。
+- `/pm-prototype update-template` — 在 `~/.claude/skills/pm-antd-prototype/template/` 目录执行 `npm update`，更新所有依赖到最新版，完成后显示更新后的 antd 版本。
+
+如果用户输入包含以上子命令关键词（version、update-template），执行对应操作后直接结束，不进入原型生成流程。
+
 ## 启动引导 + 项目初始化
 
-skill 启动后，**自动完成项目初始化，PM 无需任何手动操作**。
+skill 启动后，**自动完成项目初始化，PM 无需任何手动操作**。每个需求都是一个独立的新项目文件夹。
 
-### 自动初始化流程
+### 模板机制
 
-检测当前目录状态，执行对应操作：
+skill 目录下维护一个预装好依赖的 template/ 文件夹，新项目直接复制，无需重新下载 npm 包。
 
-**已有 package.json 的项目：**
+**首次运行（无 template/）：**
 
-1. 检查 dependencies 是否包含 `antd`，没有则 `npm install antd`
-2. 创建参考材料目录：`mkdir -p references/screenshots references/prd`
-
-**全新项目（无 package.json）：**
-
-1. `npm create vite@latest . -- --template react-ts`
-2. `npm install antd react-router-dom`
-3. `mkdir -p references/screenshots references/prd`
-4. 清空 Vite 默认文件，写入脚手架模板（见 references/scaffold-templates.md）：
+1. 在 skill 目录下创建模板：
+   ```bash
+   npm create vite@latest ~/.claude/skills/pm-antd-prototype/template -- --template react-ts
+   cd ~/.claude/skills/pm-antd-prototype/template
+   npm install antd react-router-dom
+   ```
+2. 清空 Vite 默认文件，写入脚手架模板（见 references/scaffold-templates.md）：
    - 删除 `src/App.css`、`src/index.css`、`src/assets/`
    - 写入 `src/layouts/BasicLayout.tsx`（antd Layout 骨架）
    - 写入 `src/App.tsx`（路由 + antd ConfigProvider）
    - 写入 `src/main.tsx`（入口）
    - 创建 `src/pages/` 和 `src/mock/` 空目录
-5. `npm run dev` 验证能启动，确认无编译错误后停止 dev server
+3. 创建参考材料目录：`mkdir -p references/screenshots references/prd`
+4. `npm run dev` 验证能启动，确认无编译错误后停止 dev server
+5. 提示 PM：模板已创建完成，后续新建项目将秒级完成
+
+**后续运行（已有 template/）：**
+
+1. 询问 PM 项目名称（或从需求关键词自动生成，如"用户管理"→ `user-management`）
+2. 在当前目录下复制模板：
+   ```bash
+   cp -r ~/.claude/skills/pm-antd-prototype/template/ ./<项目名>
+   cd <项目名>
+   ```
+3. 秒级完成，直接展示引导
 
 ### 初始化完成后展示引导
 
 初始化完成后，向 PM 展示以下使用指南，等待 PM 回复：
 
 ~~~
-项目已初始化完成！
+项目 <项目名> 已创建完成！
 
 我已为你创建了参考材料文件夹：
 
