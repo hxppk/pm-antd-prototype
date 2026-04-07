@@ -305,7 +305,30 @@ antd 规范校验报告：
 
 PM 满意后，询问是否需要发布到 GitHub Pages 生成在线预览链接，方便分享给其他人查看。
 
-**PM 同意发布时，必须按以下步骤执行：**
+**PM 同意发布时，必须先检查 GitHub 登录状态，再执行发布步骤：**
+
+**前置检查：必须执行 `gh auth status` 确认 GitHub 登录状态。**
+
+- 如果已登录 → 继续发布流程
+- 如果未登录或 `gh` 命令不存在 → 向 PM 展示以下引导，等待完成后再继续：
+
+~~~
+发布到 GitHub Pages 需要先登录 GitHub，请按以下步骤操作：
+
+1. 如果没有 GitHub 账号：
+   前往 https://github.com/signup 免费注册
+
+2. 安装 GitHub CLI（如果提示 gh 命令不存在）：
+   Mac:     brew install gh
+   Windows: winget install GitHub.cli
+
+3. 登录 GitHub：
+   在终端中执行 gh auth login，按提示选择 HTTPS + 浏览器登录
+
+完成后告诉我，我继续发布。
+~~~
+
+**发布步骤：**
 
 1. **配置 Vite base path**：修改 `vite.config.ts`，添加 `base` 配置：
    ```ts
