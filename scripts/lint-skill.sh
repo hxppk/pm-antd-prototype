@@ -25,7 +25,7 @@ defects=$((defects + c))
 
 # 3. 缺少 PM 确认门控：阶段二到五应该有确认步骤
 for phase in "阶段二" "阶段三" "阶段四" "阶段五"; do
-  phase_start=$(grep -n "$phase" "$SKILL" | head -1 | cut -d: -f1)
+  phase_start=$(grep -n "^## .*${phase}" "$SKILL" | head -1 | cut -d: -f1)
   if [ -n "$phase_start" ]; then
     next_section=$(awk -v start="$phase_start" 'NR > start && /^## / {print NR; exit}' "$SKILL")
     if [ -z "$next_section" ]; then
