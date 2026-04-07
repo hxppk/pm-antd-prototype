@@ -1,6 +1,6 @@
 # PM Antd Prototype Skill
 
-> Version: 1.0.0 — 查看版本：`/pm-prototype version`
+> Version: 1.1.0 — 查看版本：`/pm-prototype version`
 
 让产品经理通过 Claude Code 自然语言描述需求，严格使用 Ant Design 组件库，快速生成可运行的 React 前端原型。
 
