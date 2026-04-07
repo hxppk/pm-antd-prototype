@@ -27,6 +27,8 @@ skill 目录下维护一个预装好依赖的 template/ 文件夹，新项目直
 
 **首次运行（无 template/）：**
 
+**必须按以下顺序执行，不可跳过任何步骤：**
+
 1. 在 skill 目录下创建模板：
    ```bash
    npm create vite@latest ~/.claude/skills/pm-antd-prototype/template -- --template react-ts
