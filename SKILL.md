@@ -57,14 +57,16 @@ skill 目录下维护一个预装好依赖的 template/ 文件夹，新项目直
      ```
    - PM 可以指定任意**绝对路径**作为项目目录
    - **⚠️ 严禁在 skill 目录（`~/.claude/skills/`）下创建项目**
+   - **⚠️ 路径必须用双引号包裹**，防止空格或特殊字符导致命令出错
 3. **必须用 Bash 工具执行以下命令，不可跳过：**
    ```bash
-   mkdir -p <项目父目录>
-   cp -r ~/.claude/skills/pm-antd-prototype/template/ <项目绝对路径>
+   mkdir -p "<项目父目录>"
+   cp -a ~/.claude/skills/pm-antd-prototype/template/ "<项目绝对路径>"
    ```
+   注意：必须使用 `cp -a`（而非 `cp -r`），以保留 `node_modules/.bin/` 下的符号链接。
 4. **必须用 Bash 工具切换到项目目录：**
    ```bash
-   cd <项目绝对路径>
+   cd "<项目绝对路径>"
    ```
 5. **必须用 Bash 工具验证文件夹结构已就绪：**
    ```bash
