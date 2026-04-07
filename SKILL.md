@@ -301,6 +301,76 @@ antd 规范校验报告：
 4. 输出校验报告 → PM 确认
 5. 循环，直到 PM 满意
 
+### 发布在线预览
+
+PM 满意后，询问是否需要发布到 GitHub Pages 生成在线预览链接，方便分享给其他人查看。
+
+**PM 同意发布时，必须按以下步骤执行：**
+
+1. **配置 Vite base path**：修改 `vite.config.ts`，添加 `base` 配置：
+   ```ts
+   export default defineConfig({
+     base: '/<仓库名>/',
+     // ... 其他配置
+   })
+   ```
+
+2. **必须初始化 Git 并推送到 GitHub**：
+   ```bash
+   cd "<项目绝对路径>"
+   git init
+   git add -A
+   git commit -m "feat: initial prototype"
+   gh repo create "<仓库名>" --public --source=. --push
+   ```
+   如果 PM 希望用私有仓库，改为 `--private`（私有仓库的 Pages 需要 GitHub Pro）。
+
+3. **必须构建并部署到 GitHub Pages**：
+   ```bash
+   npm run build
+   git checkout -b gh-pages
+   git rm -rf .
+   cp -r dist/* .
+   touch .nojekyll
+   git add -A
+   git commit -m "deploy: github pages"
+   git push origin gh-pages
+   git checkout main
+   ```
+
+4. **必须启用 GitHub Pages**：
+   ```bash
+   gh api repos/{owner}/{repo}/pages -X POST -f "source[branch]=gh-pages" -f "source[path]=/" 2>/dev/null || echo "Pages 可能已启用"
+   ```
+
+5. **向 PM 展示结果**：
+   ~~~
+   原型已发布！
+
+   在线预览：https://<用户名>.github.io/<仓库名>/
+   仓库地址：https://github.com/<用户名>/<仓库名>
+
+   注意：首次部署可能需要 1-2 分钟生效。
+
+   后续如果调整了原型，再次执行发布即可更新。
+   ~~~
+
+**后续更新发布**（PM 调整原型后再次要求发布时，必须执行以下命令）：
+
+```bash
+npm run build
+git add -A && git commit -m "update: prototype changes"
+git push origin main
+git checkout gh-pages
+git rm -rf .
+cp -r dist/* .
+touch .nojekyll
+git add -A
+git commit -m "deploy: update github pages"
+git push origin gh-pages
+git checkout main
+```
+
 ---
 
 ## antd 组件不覆盖时的降级策略
