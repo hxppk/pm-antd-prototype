@@ -1,8 +1,8 @@
 # PM Antd Prototype Skill
 
-> Version: 1.1.0 — 查看版本：`/pm-prototype version`
+> Version: 1.2.0 — 查看版本：`/pm-prototype version`
 
-让产品经理通过 Claude Code 自然语言描述需求，严格使用 Ant Design 组件库，快速生成可运行的 React 前端原型。
+让产品经理通过 Claude Code 自然语言描述需求，严格使用 Ant Design 组件库，快速生成可运行的 React 前端原型。支持一键发布到 GitHub Pages 生成在线预览链接。
 
 ## 安装
 
@@ -49,12 +49,13 @@ cd ~/.claude/skills/pm-antd-prototype && git pull
 
 ## 工作流程
 
-1. **项目初始化** — 每次创建全新项目文件夹（首次自动构建模板，后续秒级复制）
+1. **项目初始化** — 确认项目路径（默认 `~/projects/`），创建全新项目文件夹
 2. **参考材料** — 初始化完成后引导 PM 放入截图/PRD（可选）
 3. **需求整理** — 自然语言描述 → 结构化需求文档 → PM 确认
 4. **组件选型 + 代码生成** — 从 antd 组件库选型 → PM 确认 → 生成代码 + mock 数据
 5. **代码校验** — 自动检查是否严格符合 antd 规范，输出校验报告
 6. **迭代调整** — PM 继续对话调整，每次重新校验
+7. **发布预览** — 一键发布到 GitHub Pages，生成在线预览链接分享给团队
 
 ## 核心规则
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0] - 2026-04-07
+
+### Added
+
+- **GitHub Pages 在线预览发布** — PM 满意后可一键发布到 GitHub Pages，生成 `https://<用户名>.github.io/<仓库名>/` 预览链接，支持后续更新发布
+- **GitHub 登录前置检查** — 发布前自动检测 `gh auth status`，未登录时引导 PM 完成 GitHub 注册 + CLI 安装 + 登录
+
 ## [1.1.0] - 2026-04-07
 
 ### Fixed
